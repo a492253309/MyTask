@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shaohao.mytask.mapper.WorldFairyMapper">
+
+    <resultMap id="WorldFairy" type="com.shaohao.mytask.entity.WorldFairy">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="coin_num" property="coinNum" jdbcType="DOUBLE"/>
+        <result column="refresh_num" property="refreshNum" jdbcType="INTEGER"/>
+        <result column="owner01_num" property="owner01_num" jdbcType="INTEGER"/>
+        <result column="owner11_num" property="owner11_num" jdbcType="INTEGER"/>
+        <result column="canbuy01_num" property="canbuy01_num" jdbcType="INTEGER"/>
+        <result column="token" property="token" jdbcType="VARCHAR"/>
+        <result column="get_time" property="get_time" jdbcType="INTEGER"/>
+        <result column="create_date" property="createDate" jdbcType="INTEGER"/>
+        <result column="create_user" property="createUser" jdbcType="INTEGER"/>
+        <result column="update_date" property="updateDate" jdbcType="INTEGER"/>
+        <result column="wd_number" property="wdNumber" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="query" resultMap="WorldFairy">
+        select id ,
+        address ,
+        coin_num ,
+        refresh_num ,
+        owner01_num ,
+        owner11_num ,
+        canbuy01_num,
+        token ,
+        get_time ,
+        wd_number ,
+        create_date ,
+        create_user ,
+        update_date
+
+        from wf_world_fairy
+
+        <where>
+            address = #{address}
+        </where>
+
+    </select>
+
+</mapper>
