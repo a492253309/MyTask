@@ -1,6 +1,9 @@
 package com.shaohao.mytask.service;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
+import com.shaohao.mytask.entity.TaskConfig;
+import com.shaohao.mytask.mapper.TaskConfigMapper;
 import com.shaohao.mytask.utils.DateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +14,7 @@ import org.springframework.stereotype.Service;
 //import java.security.KeyStore;
 import java.time.Duration;
 import java.time.Instant;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -24,78 +28,26 @@ import java.util.Scanner;
 @Service
 public class MyTask {
 
-
     private static final Logger logger = LoggerFactory.getLogger(MyTask.class);
-
-//    @Value("${task.game.token}")
-    private String token ;
-
-
-    @Autowired
-    private MyGameService myGameService;
-
-    @Autowired
-    private GameActionService gameActionService;
-
 
     @Autowired
     private MyTaskService myTaskService;
+    @Autowired
+    private TaskConfigMapper taskConfigMapper;
 
-
-    //轮次
-    private int Round = 1;;
-
-    private String wallet = "false";
-    private  int item_id = 0;
-    private  boolean sellFlag = true;
-    private  boolean ksFlag = true;
-    private  boolean wkFlag = true;
 
 
     @Scheduled(fixedRate=660000)
     public void doTask() {
-
-//        String TOKEN = scanner("token");
-//        System.out.println("token");
         main();
-
     }
 
     public void main() {
-        if(Round == 1){
-            while ("false".equals(wallet)){
-                token = scanner("token");
-                wallet = myGameService.do_verify(token);
-            }
-//            sleep(1);
-            item_id = scannerInt("农作物id");
-            String sell_flag = scanner("是否卖出农作物?(Y/N)");
-            if ("N".equals(sell_flag)){
-                sellFlag = false;
-            }
-            String ks_flag = scanner("是否砍树?(Y/N)");
-            if ("N".equals(ks_flag)){
-                ksFlag = false;
-            }
-            String wk_flag = scanner("是否挖矿?(Y/N)");
-            if ("N".equals(wk_flag)){
-                wkFlag = false;
-            }
-
+        List<TaskConfig> list = taskConfigMapper.selectList(new QueryWrapper<>());
+        for (TaskConfig entity: list){
+            entity.setRound(1);
+            myTaskService.main(entity);
         }
-
-//        myGameService.do_main(token,wallet);
-        //item_id 种子
-        myGameService.do_farm(token,wallet,item_id,sellFlag);
-        if (ksFlag){
-            myGameService.do_collect( token, wallet,10);
-        }
-        if (wkFlag){
-//            myGameService.do_collect( token, wallet,20);
-        }
-
-        Round ++;
-
     }
 
 
@@ -126,6 +78,7 @@ public class MyTask {
 //        scanner.close();
         return ipt;
     }
+
     /**
      * <p>
      * 读取控制台int
@@ -154,8 +107,8 @@ public class MyTask {
         return number;
     }
 
-    public void test() {
 
+    public void test() {
         int second = 1687971235;
         int time =DateUtils.currentSecond();
         System.out.println("开始：" +time);
@@ -167,9 +120,6 @@ public class MyTask {
             second = (int) result.getEpochSecond();
         }
     }
-
-
-
 
 
     public void sleep(int second) {

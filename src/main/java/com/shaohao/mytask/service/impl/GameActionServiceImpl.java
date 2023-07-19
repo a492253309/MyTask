@@ -351,19 +351,19 @@ public class GameActionServiceImpl implements GameActionService {
         uwrapper.eq("item_id", item_id);
         entity.setIcount(0);
         knapsackItemMapper.update(entity, uwrapper);
-        QueryWrapper<SaleShop> query = new QueryWrapper();
-        query.eq("address", wallet);
-        query.eq("item_id", item_id);
-        SaleShop saleShop = saleShopMapper.selectOne(query);
-        wrapper.clear(); // 清空条件
-        wrapper.eq("address", wallet);
-        wrapper.eq("item_id", 101);
-        entity = knapsackItemMapper.selectOne(wrapper);
-        entity.setIcount(entity.getIcount()+(saleShop.getPrice()*count));
-        uwrapper.clear(); // 清空条件
-        uwrapper.eq("address", wallet);
-        uwrapper.eq("item_id", 101);
-        knapsackItemMapper.update(entity, uwrapper);
+//        QueryWrapper<SaleShop> query = new QueryWrapper();
+//        query.eq("address", wallet);
+//        query.eq("item_id", item_id);
+//        SaleShop saleShop = saleShopMapper.selectOne(query);
+//        wrapper.clear(); // 清空条件
+//        wrapper.eq("address", wallet);
+//        wrapper.eq("item_id", 101);
+//        entity = knapsackItemMapper.selectOne(wrapper);
+//        entity.setIcount(entity.getIcount()+(saleShop.getPrice()*count));
+//        uwrapper.clear(); // 清空条件
+//        uwrapper.eq("address", wallet);
+//        uwrapper.eq("item_id", 101);
+//        knapsackItemMapper.update(entity, uwrapper);
         return true;
     }
 
@@ -402,14 +402,14 @@ public class GameActionServiceImpl implements GameActionService {
         have_info.setIcount(have_info.getIcount()+count);
         knapsackItemMapper.update(have_info, uwrapper);
         have_query.clear(); // 清空条件
-        have_query.eq("address", wallet);
-        have_query.eq("item_id", 101);
-        have_info = knapsackItemMapper.selectOne(have_query);
-        have_info.setIcount(have_info.getIcount()-(shopInfo.getPrice()*count));
-        uwrapper.clear(); // 清空条件
-        uwrapper.eq("address", wallet);
-        uwrapper.eq("item_id", 101);
-        knapsackItemMapper.update(have_info, uwrapper);
+//        have_query.eq("address", wallet);
+//        have_query.eq("item_id", 101);
+//        have_info = knapsackItemMapper.selectOne(have_query);
+//        have_info.setIcount(have_info.getIcount()-(shopInfo.getPrice()*count));
+//        uwrapper.clear(); // 清空条件
+//        uwrapper.eq("address", wallet);
+//        uwrapper.eq("item_id", 101);
+//        knapsackItemMapper.update(have_info, uwrapper);
         UpdateWrapper<Shop> updateShop = new UpdateWrapper<>();
         updateShop.eq("address",wallet);
         updateShop.eq("item_id",item_id);
