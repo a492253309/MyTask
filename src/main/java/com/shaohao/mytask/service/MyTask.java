@@ -45,7 +45,6 @@ public class MyTask {
     public void main() {
         List<TaskConfig> list = taskConfigMapper.selectList(new QueryWrapper<>());
         for (TaskConfig entity: list){
-            entity.setRound(1);
             myTaskService.main(entity);
         }
     }

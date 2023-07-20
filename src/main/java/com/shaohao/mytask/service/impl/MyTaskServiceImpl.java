@@ -24,6 +24,8 @@ public class MyTaskServiceImpl implements MyTaskService {
     @Autowired
     private TaskConfigService taskConfigService;
 
+    private static final Logger logger = LoggerFactory.getLogger("MyLogger");
+
     @Override
     public void main(TaskConfig entity) {
         boolean sellFlag = true;
@@ -47,6 +49,8 @@ public class MyTaskServiceImpl implements MyTaskService {
         if ("N".equals(entity.getWkFlag())){
             wkFlag = false;
         }
+        logger.info("----------------------------");
+        logger.info("钱包地址:"+wallet);
         //item_id 种子
         myGameService.do_farm(token,wallet,entity.getItemId(),sellFlag);
         if (ksFlag){
