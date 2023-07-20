@@ -9,7 +9,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 //import java.security.KeyStore;
 import java.time.Duration;
@@ -25,7 +27,7 @@ import java.util.Scanner;
  * @author shaohao
  * @since 2023-06-17
  */
-@Service
+@Component
 public class MyTask {
 
     private static final Logger logger = LoggerFactory.getLogger(MyTask.class);
