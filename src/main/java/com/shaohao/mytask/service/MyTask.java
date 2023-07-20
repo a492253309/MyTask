@@ -9,8 +9,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 //import java.security.KeyStore;
@@ -36,8 +38,8 @@ public class MyTask {
     private MyTaskService myTaskService;
     @Autowired
     private TaskConfigMapper taskConfigMapper;
-
-
+    @Autowired
+    private TaskExecutor  taskExecutor;
 
     @Scheduled(fixedRate=660000)
     public void doTask() {
@@ -47,7 +49,9 @@ public class MyTask {
     public void main() {
         List<TaskConfig> list = taskConfigMapper.selectList(new QueryWrapper<>());
         for (TaskConfig entity: list){
-            myTaskService.main(entity);
+            taskExecutor.execute(() -> {
+                myTaskService.main(entity);
+            });
         }
     }
 
