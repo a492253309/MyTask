@@ -182,6 +182,17 @@ public class MyGameServiceImpl implements MyGameService {
                              return;
                          }
                      }
+                     if (item_id == 4002 ){
+                         have_query.clear();
+                         have_query.eq("address", wallet);
+                         have_query.eq("item_id", 3001);
+                         have_info = knapsackItemMapper.selectOne(have_query);
+                         if (have_info.getIcount()<24){
+                             logger.info("挖矿："+ore.getOreName() + ",失败");
+                             logger.info("木头不足购买镐，拥有木头："+have_info.getIcount() + "个");
+                             return;
+                         }
+                     }
                      if(!gameAction.Buy_Goods(token, wallet, item_id,1)){
                          logger.error("买铁具失败");
                          return;

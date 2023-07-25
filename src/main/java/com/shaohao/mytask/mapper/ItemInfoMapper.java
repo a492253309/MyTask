@@ -17,4 +17,7 @@ import org.springframework.stereotype.Repository;
 @Mapper
 public interface ItemInfoMapper extends BaseMapper<ItemInfo> {
 
+    void callKnapsack();
+    void callShop();
+
 }

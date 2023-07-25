@@ -5,12 +5,12 @@ public enum wofUrlEnum {
     /**
      * World of fairy
      */
-//    Verify_User("GET", "https://www.worldoffairy.com/serve/auth/user-info-v2"),
-    Verify_User("GET", "https://www.worldoffairy.com/serve/auth/user-info"),
+    Verify_User("GET", "https://www.worldoffairy.com/serve/auth/user-info-v2"),
+//    Verify_User("GET", "https://www.worldoffairy.com/serve/auth/user-info"),
     Get_Goods("POST", "https://www.worldoffairy.com/serve/auth/farm/harvest"),
     Sell_Goods("POST", "https://www.worldoffairy.com/serve/auth/shop/sell"),
     Buy_Goods("POST", "https://www.worldoffairy.com/serve/auth/shop/buy"),
-    Into_Goods("POST", "https://www.worldoffairy.com/serve/auth/farm/sow"),
+    Into_Goods("POST", "https://www.worldoffairy.com/serve/auth/farm/sow-v2"),
     Shop_Inventory("GET", "https://www.worldoffairy.com/serve/auth/shop/items"),
     Refresh_Shop("POST", "https://www.worldoffairy.com/serve/auth/shop/clear-limit"),
     Collect("POST","https://www.worldoffairy.com/serve/auth/ore/collect")

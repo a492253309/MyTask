@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.shaohao.mytask.mapper.ItemInfoMapper">
-
+    <select id="callKnapsack" >
+    call knapsack_item_tmp()
+    </select>
+    <select id="callShop" >
+    call shop_tmp()
+    </select>
 </mapper>

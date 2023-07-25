@@ -96,6 +96,9 @@ public class GameActionServiceImpl implements GameActionService {
             updateLand(wallet, land);
             String ore = dataJson.getString("ore");
             updateOre(wallet, ore);
+
+            JSONObject baseJson = JSONObject.parseObject(base);
+            init(wallet,baseJson.getInteger("farm_level"));
 //            Integer time =landList.stream().map(Land::getHarvest_at).max(Integer::compareTo).get();
 //            String get_time = DateUtils.getStringDateByUnix(time);
 //            String item = dataJson.getString("item");
@@ -105,7 +108,6 @@ public class GameActionServiceImpl implements GameActionService {
 //            double owner01_num =itemList.stream().filter(Knapsack -> Knapsack.getItem_id()== 2006).mapToDouble(Knapsack::getCount).findFirst().orElse(0);
 //            double owner11_num =itemList.stream().filter(Knapsack -> Knapsack.getItem_id()== 1006).mapToDouble(Knapsack::getCount).findFirst().orElse(0);
             logger.info("钱包地址:"+wallet);
-//            logger.info("成熟时间:"+get_time +",叶子数量:"+coin_num +",刷新券数量:"+refresh_num +",南瓜种子数量:"+owner01_num + ",南瓜数量:"+owner11_num);
 
 
             return wallet;
@@ -118,7 +120,8 @@ public class GameActionServiceImpl implements GameActionService {
 
     @Override
     public void init(String wallet,int farm_level) {
-
+        itemInfoMapper.callKnapsack();
+        itemInfoMapper.callShop();
 
     }
     public void updateWorld(String token, String wallet, String base) {
@@ -187,6 +190,13 @@ public class GameActionServiceImpl implements GameActionService {
             wrapper.eq("address", wallet);
             wrapper.eq("ore_id", dto.getOre_id());
             if (oreMapper.selectOne(wrapper) == null) {
+                if (dto.getOre_id() ==3005){
+                    entity.setType(20);
+                }else if(dto.getOre_id() ==3006){
+                    entity.setType(30);
+                }else{
+                    entity.setType(10);
+                }
                 oreMapper.insert(entity);
             } else {
                 UpdateWrapper<Ore> uwrapper = new UpdateWrapper();
@@ -322,6 +332,12 @@ public class GameActionServiceImpl implements GameActionService {
         wrapper.eq("address", wallet);
         wrapper.eq("item_id", item_id);
         KnapsackItem entity = knapsackItemMapper.selectOne(wrapper);
+        if (entity == null){
+            KnapsackItem item = new KnapsackItem();
+            item.setIcount(0).setItemId(item_id).setAddress(wallet);
+            knapsackItemMapper.insert(item);
+            return true;
+        }
         int count = (int) entity.getIcount();
         if (count == 0){
             logger.info("拥有0个"+ entity.getItemName()+"，Sell_Goods直接返回");
@@ -532,6 +548,9 @@ public class GameActionServiceImpl implements GameActionService {
                 have_query.eq("address", wallet);
                 have_query.eq("item_id", item.getItem_id());
                 KnapsackItem have_info = knapsackItemMapper.selectOne(have_query);
+                if (have_info == null){
+                    continue;
+                }
                 UpdateWrapper<KnapsackItem> uwrapper = new UpdateWrapper();
                 uwrapper.eq("address", wallet);
                 uwrapper.eq("item_id", item.getItem_id());

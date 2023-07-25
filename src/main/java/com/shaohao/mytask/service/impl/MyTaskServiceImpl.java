@@ -53,13 +53,15 @@ public class MyTaskServiceImpl implements MyTaskService {
         }
         logger.info("----------------------------");
         logger.info("钱包地址:"+wallet);
-        //item_id 种子
-        myGameService.do_farm(token,wallet,entity.getItemId(),sellFlag);
+        //item_id 种子， 0不种菜
+        if (entity.getItemId() != 0){
+            myGameService.do_farm(token,wallet,entity.getItemId(),sellFlag);
+        }
         if (ksFlag){
             myGameService.do_collect( token, wallet,10);
         }
         if (wkFlag){
-//            myGameService.do_collect( token, wallet,20);
+            myGameService.do_collect( token, wallet,20);
         }
         taskConfigService.setRound(wallet);
 
