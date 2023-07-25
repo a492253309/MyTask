@@ -570,7 +570,7 @@ public class GameActionServiceImpl implements GameActionService {
             minutes = 108;
         }else if(ore_id == 3005){
             item_id = 4002;
-            minutes = 216;
+            minutes = 240;
         }
         if (item_id != 0){
             QueryWrapper<KnapsackItem> have_query = new QueryWrapper();
