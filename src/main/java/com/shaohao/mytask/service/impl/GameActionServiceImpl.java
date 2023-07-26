@@ -431,6 +431,17 @@ public class GameActionServiceImpl implements GameActionService {
         updateShop.eq("item_id",item_id);
         shopInfo.setCurrentNum(shopInfo.getCurrentNum()-count);
         shopMapper.update(shopInfo,updateShop);
+        if (item_id == 4002){ //镐消耗24木头
+            have_query.clear(); // 清空条件
+            have_query.eq("address", wallet);
+            have_query.eq("item_id", 3001);
+            have_info = knapsackItemMapper.selectOne(have_query);
+            uwrapper.clear(); // 清空条件
+            uwrapper.eq("address", wallet);
+            uwrapper.eq("item_id", 3001);
+            have_info.setIcount(have_info.getIcount()-24);
+            knapsackItemMapper.update(have_info, uwrapper);
+        }
         return true;
     }
 
