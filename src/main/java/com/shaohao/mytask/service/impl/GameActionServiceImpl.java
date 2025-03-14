@@ -607,6 +607,11 @@ public class GameActionServiceImpl implements GameActionService {
         return true;
     }
 
+    @Override
+    public boolean Build_Put(String token,String wallet,Integer ore_id) {
+//        {"type":1,"list":[{"item_id":2012,"count":32}]}
+        return true;
+    }
     public void sleep(int second) {
         try {
             Thread.sleep(1000*second); // 休眠十秒（10000毫秒）

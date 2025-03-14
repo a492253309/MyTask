@@ -61,4 +61,11 @@ public interface GameActionService {
      * @return Boolean
      */
     boolean Collect_Mining(String token,String wallet,Integer ore_id);
+
+    /**
+     * 自动化补充种子
+     *
+     * @return Boolean
+     */
+    boolean Build_Put(String token,String wallet,Integer ore_id);
 }

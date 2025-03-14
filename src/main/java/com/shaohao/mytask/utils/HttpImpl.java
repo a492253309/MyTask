@@ -25,9 +25,11 @@ public class HttpImpl implements HTTP {
     public final MediaType MEDIA_JSON = MediaType.parse("application/json; charset=utf-8");
     public final MediaType MEDIA_XML = MediaType.parse("application/xml; charset=utf-8");
 
+    //最大尝试次数
     @Value("${task.http.maxRetryCount}")
     private int maxRetryCount;
 
+    //成功状态码
     @Value("${task.http.expectedStatusCode}")
     private int expectedStatusCode;
 

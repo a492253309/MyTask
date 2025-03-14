@@ -2,6 +2,7 @@ package com.shaohao.mytask.generator;
 
 /**
  * Mybatis-plus 自动生成文件配置
+ * 这是swagger的
  */
 
 import com.baomidou.mybatisplus.annotation.DbType;
@@ -62,10 +63,10 @@ public class MybatisPlusConfig {
         mpg.setGlobalConfig(gc);
 // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://rm-bp1bkx8298vgdh7y66o.mysql.rds.aliyuncs.com:3306/vueblog?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&serverTimezone=GMT&useSSL=false");
+        dsc.setUrl("jdbc:mysql://sh-cynosdbmysql-grp-g1ebxqky.sql.tencentcdb.com:25934/tgbot?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&serverTimezone=GMT&useSSL=false");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
-        dsc.setUsername("gaoxinbo");
-        dsc.setPassword("Gxb123456@");
+        dsc.setUsername("root");
+        dsc.setPassword("Tt667788");
 //使用mysql数据库
         dsc.setDbType(DbType.MYSQL);
         mpg.setDataSource(dsc);
@@ -96,7 +97,7 @@ public class MybatisPlusConfig {
 //驼峰转连字符
         strategy.setControllerMappingHyphenStyle(true);
         //忽略表中生成实体类的前缀
-        strategy.setTablePrefix("wf");
+//        strategy.setTablePrefix("wf");
         mpg.setStrategy(strategy);
         mpg.execute();
     }
