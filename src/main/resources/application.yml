@@ -10,12 +10,12 @@ logging:
           mapper: debug
 task:
   poxy:
-    hostname: 43.132.109.230
-    port: 10801
+    hostname: 
+    port: 
     userName: 98984
     passWord: 35133
   game:
-    token: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiIweDc0MGY2MGRiNTE2OGU5ZmQ0NGIxYmMwYTc1MTAxYTZjYTkwYTJmNzAiLCJzdWIiOiJ3ZWIiLCJleHAiOjE2ODk5MTE5NzZ9.52M9C-mfUJBuXBTT23UtiK2E8MYQ27x7oU2NBLEmbUM
+    token: Bearer eyJhbGciOiJIUzI1iNTE2OGU5ZmQ0NGIxYmMwYTc1MTAxYTZjYTkwYTJmNzAiLCJzdWIiOiJ3ZWIiLCJleHAiOjE2ODk5MTE5NzZ9.52M9C-mfUJBuXBTT23UtiK2E8MYQ27x7oU2NBLEmbUM
 
   http:
     # newcall重试次数
@@ -25,19 +25,16 @@ task:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://rm-bp1bkx8298vgdh7y66o.mysql.rds.aliyuncs.com:3306/vueblog?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT&useSSL=false
-    username: gaoxinbo
-    password: Gxb123456@
+    url: jdbc:mysql: one=GMT&useSSL=false
+    username:  
+    password:  
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       oracle-pooled-prepared-statements: false
       pool:
         prepared-statement-cache-enabled: false
         prepared-statement-cache-query-size: 0
-
-#    url: jdbc:mysql://zhaoguoshun.cn:3306/cms?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false
-#    username: cms
-#    password: 123456
+ 
   jackson:
     date-format: yyyy-MM-dd
     time-zone: Asia/Shanghai
