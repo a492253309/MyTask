@@ -10,12 +10,12 @@ logging:
           mapper: debug
 task:
   poxy:
-    hostname:  #hostname
-    port: 10801
+    hostname: #hostname
+    port: #port
     userName: 98984
     passWord: 35133
   game:
-    token:  Dc0MGY2MGRiNTE2OGU
+    token: Bearer eyJhbGciOiJIUzTc1MTAxYTZjYTkwYTJmNzAiLCJzdWIiOiJ3ZWIiLCJleHAiOjE2ODk5MTE5NzZ9.52M9C-mfUJBuXBTT23UtiK2E8MYQ27x7oU2NBLEmbUM
 
   http:
     # newcall重试次数
@@ -25,9 +25,9 @@ task:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: #jdbc:mysql://116.62.50.140
-    username: root
-    password:  # password
+    url: #jdbc:mysql://
+    username: #root
+    password: #root
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       oracle-pooled-prepared-statements: false
